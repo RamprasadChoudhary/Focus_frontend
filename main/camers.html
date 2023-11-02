@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <nav class="vertical-navbar">
+        <ul>
+          <li><a href="3d-navbar.html">Home</a></li>
+          <li><a href="camers.html">Products</a></li>
+          <li><a href="3d-navbar.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <label for="category-filter">Filter by Category:</label>
+        <select id="category-filter">
+          <option value="all">All</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+        </select>
+        
+        <label for="price-sort">Sort by Price:</label>
+        <select id="price-sort">
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
+        </select>
+      </nav>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera</title>
+    <link rel="icon" href="#" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+        }
+
+        .product-card button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        header {
+            background-color: #0078d4;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        nav {
+            background-color: #d6f6f9;
+            color: #000;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+            position: relative;
+            background-color: #d6f6f9;
+            border: 1px solid #0078d4;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        nav li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* Add hover effect */
+        nav li:hover {
+            background-color: #f5f5f3;
+            color: #fff;
+        }
+    </style>
+    
+    <script>
+        // Function to filter products by category
+        function filterProducts() {
+            const categoryFilter = document.getElementById("category-filter");
+            const selectedCategory = categoryFilter.value;
+            const productCards = document.querySelectorAll(".product-card");
+
+            productCards.forEach(card => {
+                const category = card.getAttribute("data-category");
+                if (selectedCategory === "all" || selectedCategory === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Function to sort products by price
+        function sortProducts() {
+            const priceSort = document.getElementById("price-sort");
+            const selectedSort = priceSort.value;
+            const productList = document.querySelector(".product-list");
+            const productCards = Array.from(document.querySelectorAll(".product-card"));
+
+            productCards.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute("data-price").replace("$", ""));
+                const priceB = parseFloat(b.getAttribute("data-price").replace("$", ""));
+                if (selectedSort === "asc") {
+                    return priceA - priceB;
+                } else {
+                    return priceB - priceA;
+                }
+            });
+
+            productList.innerHTML = "";
+            productCards.forEach(card => {
+                productList.appendChild(card);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="product-list">
+        
+            <div class="product-card" data-category="books" data-price="$550">
+                <img src="cookbook.jpg" alt="cammera">
+                <h3>cookbook</h3>
+                <p>Price: $550</p>
+                <p>Description: cookbook</p>
+                <button>Add to Cart</button>
+            </div>
+        
+
+        <div class="product-card" data-category="Electronics" data-price="$10000">
+            <img src="Laptop.jpg" alt="Product 2">
+            <h3>Laptop</h3>
+            <p>Price: $10000</p>
+            <p>Description: MAC BOOK</p>
+            <button>Add to Cart</button>
+        </div>
+       
+            <div class="product-card" data-category="electronics" data-price="$560">
+                <img src="Smartphone.jpg" alt="Product 3">
+                <h3>Smartphone</h3>
+                <p>Price: $560</p>
+                <p>Description: Apple iphone</p>
+                <button>Add to Cart</button>
+            </div>
+        
+        <div class="product-card" data-category="clothing" data-price="$350" >
+            <img src="jeans (1).jpg" alt="Product 3">
+            <h3>jeans</h3>
+            <p>Price: $350</p>
+            <p>Description: jents clothing</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="books" data-price="$250">
+            <img src="Noval (1).jpg" alt="Product 3">
+            <h3>Noval</h3>
+            <p>Price: $250</p>
+            <p>Description: inspiring Noval</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="clothing" data-price="$400">
+            <img src="T-shirt.jpg" alt="Product 3">
+            <h3>T-shirt</h3>
+            <p>Price: $400</p>
+            <p>Description: Sports t-shirt</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card" data-category="electronics" data-price="$620">
+            <img src="c3.jpg" alt="Product 3">
+            <h3>cammera</h3>
+            <p>Price: $620</p>
+            <p>Description: HD Focus</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="electronics" data-price="$1900">
+            <img src="c2.jpg" alt="Product 3">
+            <h3>Focus F8</h3>
+            <p>Price: $1900</p>
+            <p>Description: Spical one</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#about">1</a></li>
+            <li><a href="./camera2.html">2</a></li>
+            <li><a href="#research">3</a></li>
+
+        </ul>
+    </nav>
+    <script>
+        document.getElementById("category-filter").addEventListener("change", filterProducts);
+        document.getElementById("price-sort").addEventListener("change", sortProducts);
+    </script>
+    
+</body>
+</html>
